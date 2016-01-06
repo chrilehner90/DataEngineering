@@ -10,7 +10,7 @@ class BookFetcher:
         self.skip_existing_files = skip_existing_files
         self.sleep_timer = sleep_timer
 
-    def run(self, from_id=1, to_id=20):
+    def run(self, from_id=1, to_id=50):
         if not os.path.exists(self.output_directory):
             os.makedirs(self.output_directory)
 
@@ -20,8 +20,16 @@ class BookFetcher:
 
                 if os.path.exists(self.output_directory + file_name) & self.skip_existing_files:
                     print "File " + file_name + " already fetched!"
+                    continue
 
-                book = urllib2.urlopen(self.url + str(index) + "/" + file_name).read()
+                response = urllib2.urlopen(self.url + str(index) + "/" + file_name)
+                print response.info().type
+
+                # stop when captcha is returned not to get blocked
+                if response.info().type != "text/plain":
+                    raise Exception("Server returned Captcha. Stopping now.")
+
+                book = response.read()
 
                 with open(self.output_directory + file_name, "w") as f:
                     print "Writing " + file_name
