@@ -15,8 +15,6 @@ class BookFetcher:
         self.ignored_books = [69]
 
     def run(self, from_id=1, to_id=100):
-        if not os.path.exists(self.Helper.book_directory):
-            os.makedirs(self.Helper.book_directory)
 
         try:
             for index in range(from_id, to_id):
