@@ -4,12 +4,15 @@ import time
 
 from helper import Helper
 
+
 class BookFetcher:
     def __init__(self, skip_existing_files=True, sleep_timer=10):
         self.Helper = Helper()
         self.url = "https://www.gutenberg.org/files/"
         self.skip_existing_files = skip_existing_files
         self.sleep_timer = sleep_timer
+
+        self.ignored_books = [69]
 
     def run(self, from_id=1, to_id=100):
         if not os.path.exists(self.Helper.book_directory):
@@ -21,6 +24,9 @@ class BookFetcher:
 
                 if os.path.exists(self.Helper.book_directory + filename) & self.skip_existing_files:
                     print "File " + filename + " already fetched!"
+                    continue
+
+                if index in self.ignored_books:
                     continue
 
                 response = urllib2.urlopen(self.url + str(index) + "/" + filename)
