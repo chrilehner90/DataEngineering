@@ -1,7 +1,9 @@
 import os
-
+import nltk
 from helper import Helper
 
+# download tokenizers
+nltk.download("punkt")
 
 class TextAnalyzer:
     def __init__(self):
@@ -18,8 +20,10 @@ class TextAnalyzer:
 
     def tokenize(self, book):
         book_lower_case = book.lower()
-        tokens = book_lower_case.split()
-        return tokens
+        tokens = nltk.wordpunct_tokenize(book_lower_case)
+        tokens_filtered = filter(lambda t: t.isalnum(), tokens)
+
+        return tokens_filtered
 
     def get_document_count(self):
         return self._document_count
