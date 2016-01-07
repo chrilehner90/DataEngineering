@@ -1,4 +1,6 @@
 .idea
+lemmatization
+stemming
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
