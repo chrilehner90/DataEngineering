@@ -20,7 +20,7 @@ class BookFetcher:
             for index in range(from_id, to_id):
                 filename = str(index) + ".txt"
 
-                if os.path.exists(self.Helper.book_directory + filename) & self.skip_existing_files:
+                if os.path.exists(self.Helper.directory_original_books + filename) & self.skip_existing_files:
                     print "File " + filename + " already fetched!"
                     continue
 
