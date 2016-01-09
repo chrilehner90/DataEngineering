@@ -95,7 +95,7 @@ class TextAnalyzer:
     def count_distinct_tokens_of_all_books_with_lemmatization(self):
         return sum(self.distinct_tokens_counts_with_lemmatization)
 
-    def word_frequencies(self, identifier):
+    def calculate_word_frequencies(self, identifier):
         combined_books = ""
         if identifier == "f":
             for book in self.filtered_books:
@@ -106,6 +106,9 @@ class TextAnalyzer:
         # sort distributions by value descending
         sorted_fdist = sorted(fdist.items(), key=lambda x: -x[1])
         return sorted_fdist
+
+    def calculate_zipf_distribution(self):
+        print "TODO: Zipf Distribution"
 
     def load_processed_files(self):
         print "Loading preprocessed files"
@@ -143,4 +146,5 @@ if __name__ == "__main__":
     print "# OF DISTINCT TOKENS:", ta.count_distinct_tokens_of_all_books()
     print "# OF DISTINCT TOKENS AFTER STEMMING:", ta.count_distinct_tokens_of_all_books_with_stemming()
     print "# OF DISTINCT TOKENS AFTER LEMMATIZATION:", ta.count_distinct_tokens_of_all_books_with_lemmatization()
-    print "Zipf Distribution:", ta.calculate_zipf_distribution("f")
+
+    word_frequencies = ta.calculate_word_frequencies("f")
