@@ -1,6 +1,7 @@
 .idea
 lemmatization
 stemming
+filtered
 *.zip
 
 # Byte-compiled / optimized / DLL files
