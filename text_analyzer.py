@@ -38,17 +38,21 @@ class TextAnalyzer:
 
                 self.Helper.write_file(book, filename, "f")
 
-                if perform_stemming:
+                if perform_stemming & (not self.Helper.file_exists(self.Helper.stemming_directory, filename)):
                     stemmed_book = self.perform_stemming(book, filename)
                     self.stemmed_books.append(stemmed_book)
 
                     self.Helper.write_file(stemmed_book, filename, "s")
+                else:
+                    print self.Helper.stemming_directory + filename, "already exists."
 
-                if perform_lemmatization:
+                if perform_lemmatization & (not self.Helper.file_exists(self.Helper.lemmatization_directory, filename)):
                     lemmatized_book = self.perform_lemmatization(book, filename)
                     self.lemmatized_books.append(lemmatized_book)
 
                     self.Helper.write_file(lemmatized_book, filename, "l")
+                else:
+                    print self.Helper.lemmatization_directory + filename, "already exists."
 
     # tokenization currently without stopword removal
     def tokenize(self, string):
@@ -147,7 +151,7 @@ class TextAnalyzer:
 
 if __name__ == "__main__":
     ta = TextAnalyzer()
-    #ta.process_text(1, perform_stemming=False, perform_lemmatization=False)
+    ta.process_text()
 
     ta.load_processed_files()
 

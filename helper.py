@@ -49,5 +49,5 @@ class Helper:
             print "Book successfully written to", directory + filename
             return True
         else:
-            print directory + filename, "already exists"
+            print directory + filename, "already exists."
             return False
