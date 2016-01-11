@@ -149,9 +149,10 @@ class TextAnalyzer:
                     len(self.count_distinct_tokens(lemmatized_tokens))
             )
 
+
 if __name__ == "__main__":
     ta = TextAnalyzer()
-    ta.process_text()
+    #ta.process_text(perform_stemming=False, perform_lemmatization=False)
 
     ta.load_processed_files()
 
@@ -162,5 +163,8 @@ if __name__ == "__main__":
     print "# OF DISTINCT TOKENS AFTER LEMMATIZATION:", ta.count_distinct_tokens_of_all_books_with_lemmatization()
 
     word_frequencies = ta.calculate_word_frequencies("f")
-    zipf_dist = ta.calculate_zipf_distribution(word_frequencies, 100)
-    print zipf_dist
+    zipf_dist = ta.calculate_zipf_distribution(word_frequencies, 50)
+
+
+    for t in zipf_dist:
+        print t[0], ",", t[1]
