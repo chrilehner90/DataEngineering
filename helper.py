@@ -24,6 +24,11 @@ class Helper:
         with open(directory + filename, "r") as f:
             return unicode(f.read(), errors="ignore")
 
+    def file_exists(self, directory, filename):
+        if os.path.exists(directory + filename):
+            return True
+        return False
+
     def write_file(self, book, filename, identifier=""):
         directory = self.get_directory(identifier)
 
@@ -36,7 +41,7 @@ class Helper:
         if not os.path.exists(self.lemmatization_directory):
             os.makedirs(self.lemmatization_directory)
 
-        if not os.path.exists(directory + filename):
+        if not self.file_exists(directory, filename):
             with open(directory + filename, "w") as f:
                 print "Writing " + filename
                 f.write(book)
@@ -44,5 +49,5 @@ class Helper:
             print "Book successfully written to", directory + filename
             return True
         else:
-            print directory + filename, "already exists"
+            print directory + filename, "already exists."
             return False
