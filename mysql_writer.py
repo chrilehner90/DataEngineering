@@ -16,11 +16,12 @@ def setup_database(connection, cursor):
 
 def write_books(connection, cursor):
     for file_name in os.listdir('./books/'):
-        with open('./books/' + str(file_name)) as f:
-            book = str(unicode(f.read(), errors="ignore"))
-            cursor.execute("INSERT INTO books(book) VALUES (%s)", book)
-            cursor.execute("INSERT INTO books_fulltext_index(book) VALUES (%s)", book)
-            connection.commit()
+        if file_name.endswith('.txt'):
+            with open('./books/' + str(file_name)) as f:
+                book = str(unicode(f.read(), errors="ignore"))
+                cursor.execute("INSERT INTO books(book) VALUES (%s)", book)
+                cursor.execute("INSERT INTO books_fulltext_index(book) VALUES (%s)", book)
+                connection.commit()
 
 def add_fulltext_index(connection, cursor):
     cursor.execute("ALTER TABLE books_fulltext_index ENGINE = MyISAM")
