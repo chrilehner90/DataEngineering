@@ -2,7 +2,7 @@ import os
 
 class Helper:
     def __init__(self):
-        self.directory_original_books = "downloads/"
+        self.directory_original_books = "books/"
         self.directory_filtered_book = "filtered/"
         self.stemming_directory = "stemming/"
         self.lemmatization_directory = "lemmatization/"
