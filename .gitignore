@@ -2,7 +2,9 @@
 lemmatization
 stemming
 filtered
+books
 *.zip
+config.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
