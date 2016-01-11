@@ -2,6 +2,7 @@
 lemmatization
 stemming
 filtered
+books
 *.zip
 
 # Byte-compiled / optimized / DLL files
