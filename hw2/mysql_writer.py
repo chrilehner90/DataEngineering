@@ -15,9 +15,9 @@ def setup_database(connection, cursor):
 
 
 def write_books(connection, cursor):
-    for file_name in os.listdir('./books/'):
+    for file_name in os.listdir('./filtered/'):
         if file_name.endswith('.txt'):
-            with open('./books/' + str(file_name)) as f:
+            with open('./filtered/' + str(file_name)) as f:
                 book = str(unicode(f.read(), errors="ignore"))
                 cursor.execute("INSERT INTO books(book) VALUES (%s)", book)
                 cursor.execute("INSERT INTO books_fulltext_index(book) VALUES (%s)", book)
@@ -34,9 +34,9 @@ if __name__ == "__main__":
         connection = MySQLdb.connect(db=config.db, user=config.user, passwd=config.password, host=config.host, use_unicode=True, charset="utf8")
         cursor = connection.cursor()
 
-        #setup_database(connection, cursor)
-        #write_books(connection, cursor)
-        #add_fulltext_index(connection, cursor)
+        setup_database(connection, cursor)
+        write_books(connection, cursor)
+        add_fulltext_index(connection, cursor)
 
     except MySQLdb.Error, e:
         try:
