@@ -47,4 +47,4 @@ END
 $$
 
 DELIMITER ;
-SELECT f.flugnr, flight_time(f.ankunft, f.abflug) as flight_time FROM FlughafenDB.flug f;
+SELECT f.flugnr, flight_time(f.ankunft, f.abflug) as flight_time FROM flug f;
