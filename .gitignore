@@ -5,6 +5,7 @@ filtered
 books
 *.zip
 config.py
+bower_components/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
