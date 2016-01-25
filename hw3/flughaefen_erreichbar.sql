@@ -1,6 +1,6 @@
 use FlughafenDB;
 
-SET GLOBAL max_sp_recursion_depth = 20;
+SET max_sp_recursion_depth = 20;
 
 DROP PROCEDURE IF EXISTS erreichbare_flughaefen;
 
